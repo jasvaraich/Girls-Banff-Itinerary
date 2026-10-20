@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Banff Girls Trip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=DM+Sans:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fde6ec;--paper:#fffafb;--ink:#3b1f36;--soft:#7a5a74;--rose:#e0507f;--lilac:#c9b8f5;--butter:#ffe7a3;--mint:#bfe8d6;--line:#f3c9d6;--shadow:rgba(120,40,80,.18)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#2a1627;--paper:#3a2236;--ink:#ffeaf1;--soft:#d9b3c8;--rose:#ff7fa6;--lilac:#6d5aa8;--butter:#7a6a2e;--mint:#2f6b55;--line:#5b3855;--shadow:rgba(0,0,0,.4)}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "DM Sans",system-ui,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);background-image:radial-gradient(var(--line) 1.5px,transparent 1.5px);background-size:22px 22px}
+main{max-width:760px;margin:0 auto;padding:20px 16px 80px}
+h1,h2{font-family:Caprasimo,Georgia,serif;font-weight:400;line-height:1.1;margin:0}
+.hero{text-align:center;padding:36px 8px 18px}
+.hero h1{font-size:clamp(2.4rem,9vw,3.8rem);color:var(--rose);transform:rotate(-2deg);display:inline-block}
+.hero p{font-family:Caveat,cursive;font-size:1.6rem;margin:6px 0 0;color:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 4px}
+.chip{background:var(--paper);border:2px dashed var(--rose);border-radius:99px;padding:4px 14px;font-size:.9rem}
+.bar{position:sticky;top:env(safe-area-inset-top,0);z-index:5;background:var(--bg);padding:8px 0;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}
+.bar span{font-weight:700}
+.meter{flex:1 1 140px;max-width:240px;height:12px;border-radius:9px;background:var(--paper);border:2px solid var(--rose);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--rose);transition:width .3s}
+button{font:inherit;cursor:pointer;border:2px solid var(--ink);background:var(--butter);color:var(--ink);border-radius:99px;padding:6px 14px;font-weight:700}
+button:hover{background:var(--lilac)}
+button.ghost{background:transparent;border-color:var(--line);font-weight:500;padding:3px 10px;font-size:.85rem;color:var(--soft)}
+:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+.stop{background:var(--paper);border-radius:14px;padding:20px 18px 16px;margin:34px 0;position:relative;box-shadow:0 6px 0 var(--shadow);border:2px solid var(--line)}
+.stop:nth-child(odd){transform:rotate(-.6deg)}
+.stop:nth-child(even){transform:rotate(.6deg)}
+.stop::before{content:"";position:absolute;top:-13px;left:50%;width:90px;height:24px;margin-left:-45px;background:var(--lilac);opacity:.85;transform:rotate(-3deg);border-radius:3px}
+.stop.done{border-color:var(--rose)}
+.time{font-family:Caveat,cursive;font-size:1.5rem;color:var(--rose);font-weight:700}
+.stop h2{font-size:1.6rem;margin:2px 0 6px}
+.tag{display:inline-block;border-radius:99px;padding:1px 12px;font-size:.8rem;font-weight:700;background:var(--mint);color:var(--ink);margin-bottom:6px}
+.tag.food{background:var(--butter)}
+.tag.drive{background:var(--lilac)}
+[contenteditable]{border-radius:6px;outline:none}
+[contenteditable]:hover{background:rgba(224,80,127,.08)}
+[contenteditable]:focus{background:rgba(224,80,127,.14)}
+.tip{background:var(--bg);border-radius:10px;padding:8px 12px;margin:10px 0;font-size:.95rem}
+.tip b{color:var(--rose)}
+label.chk{display:flex;gap:8px;align-items:center;font-weight:700;margin:8px 0;cursor:pointer}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--rose)}
+textarea{width:100%;min-height:110px;resize:vertical;border:2px solid var(--line);border-radius:10px;padding:10px 12px;font:1.25rem/1.6 Caveat,cursive;color:var(--ink);background:repeating-linear-gradient(transparent,transparent 31px,var(--line) 32px);background-color:var(--paper)}
+.row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px}
+.sec{background:var(--paper);border-radius:14px;padding:20px 18px;margin:34px 0;border:2px solid var(--line);box-shadow:0 6px 0 var(--shadow)}
+.sec h2{font-size:1.6rem;margin-bottom:10px;color:var(--rose)}
+.item{display:flex;gap:8px;align-items:center;padding:4px 0;border-bottom:1px dashed var(--line)}
+.item span[contenteditable]{flex:1;padding:2px 4px}
+.item input[type=number]{width:84px;border:2px solid var(--line);border-radius:8px;padding:4px 8px;font:inherit;background:var(--bg);color:var(--ink)}
+.item.off span[contenteditable]{text-decoration:line-through;opacity:.55}
+.total{font-weight:700;font-size:1.1rem;margin-top:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.foot{text-align:center;font-family:Caveat,cursive;font-size:1.5rem;color:var(--soft);margin-top:40px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{.bar,.row,button{display:none}}
+</style>
+</head>
+<body>
+<main>
+<header class="hero">
+<h1>Banff Girls Trip</h1>
+<p>Calgary to the mountains, pretty stops only. No hiking.</p>
+<div class="chips"><span class="chip">About 1.5 hr each way</span><span class="chip">3 girls, 1 playlist</span><span class="chip">2 food stops</span></div>
+</header>
+
+<div class="bar">
+<span id="count">0 photos</span>
+<div class="meter" aria-hidden="true"><i id="fill"></i></div>
+<button id="theme" aria-label="Switch light or dark">Dark/Light</button>
+</div>
+
+<div id="stops"></div>
+<div class="row" style="justify-content:center"><button id="add">+ Add a stop</button></div>
+
+<section class="sec" id="budget">
+<h2>Budget</h2>
+<div id="blist"></div>
+<div class="row" style="justify-content:flex-start"><button class="ghost" id="addb">+ Add expense</button></div>
+<div class="total"><span>Total: $<span id="btotal">0</span></span><span>Each (<input id="ppl" type="number" min="1" value="3" style="width:56px;border:2px solid var(--line);border-radius:8px;padding:2px 6px;background:var(--bg);color:var(--ink);font:inherit">): $<span id="beach">0</span></span></div>
+</section>
+
+<section class="sec" id="pack">
+<h2>Pack list</h2>
+<div id="plist"></div>
+<div class="row" style="justify-content:flex-start"><button class="ghost" id="addp">+ Add item</button></div>
+</section>
+
+<section class="sec">
+<h2>Group notes</h2>
+<textarea data-note="general" placeholder="Playlist, who's driving, outfit colours, anything else…" style="min-height:160px"></textarea>
+</section>
+
+<p class="foot">Everything on this page is editable. Tap any text to change it. Saved on your own device.</p>
+<div class="row" style="justify-content:center"><button class="ghost" id="reset">Reset page</button></div>
+</main>
+
+<script>
+(function(){
+var KEY="banff-girls-trip-v1";
+var DEFAULT={
+ stops:[
+  {id:"s1",kind:"drive",time:"8:30 AM",title:"Leave Calgary",blurb:"Coffee in hand, playlist on. Take Highway 1 west and the mountains show up on their own.",tip:"Sit on the passenger side going out for the first peek of the Rockies. Pull over safely at a marked viewpoint, never on the shoulder.",note:""},
+  {id:"s2",kind:"photo",time:"9:45 AM",title:"Engine Bridge, Canmore",blurb:"A pretty pedestrian bridge over the Bow River with the Three Sisters peaks behind it.",tip:"Stand mid-bridge and shoot with the peaks over your shoulder. Walk-and-twirl videos work well here. About 30 minutes.",note:""},
+  {id:"s3",kind:"food",time:"10:45 AM",title:"Cafe: Wild Flour Bakery, Banff",blurb:"Cozy bakery cafe with pastries, sandwiches and good coffee. Budget friendly and very photogenic.",tip:"Go early, it fills up. Get one pastry each and swap bites for the flat-lay photo.",note:""},
+  {id:"s4",kind:"photo",time:"12:00 PM",title:"Vermilion Lakes",blurb:"A short scenic drive with calm water, reeds and Mount Rundle reflecting on a still day.",tip:"Stop at the second or third pull-off for the best reflection. Wind ruins it, so check the water first.",note:""},
+  {id:"s5",kind:"photo",time:"1:00 PM",title:"Surprise Corner and Bow Falls",blurb:"The postcard view of the Fairmont Banff Springs castle with the valley behind it, plus the falls below.",tip:"Surprise Corner is a short walk from the parking area. Take a wide shot from the viewpoint and a close-up at the falls.",note:""},
+  {id:"s6",kind:"food",time:"2:00 PM",title:"Lunch: Barpa Bill's Souvlaki, Banff",blurb:"Quick, filling and cheap by Banff standards. Souvlaki wraps and Greek plates on Banff Avenue.",tip:"Eat by the river or grab a bench on Banff Ave. Check hours before you go.",note:""},
+  {id:"s7",kind:"photo",time:"3:00 PM",title:"Banff Avenue stroll",blurb:"Cute shops, candy stores and Cascade Mountain filling the end of the street.",tip:"Stand in the middle of the crosswalk at the bottom of the street for the classic mountain-down-the-road shot. Watch for cars.",note:""},
+  {id:"s8",kind:"photo",time:"4:30 PM",title:"Lake Minnewanka and Two Jack Lake",blurb:"Big turquoise-blue lakes ringed by mountains, only minutes from town. Bring a blanket.",tip:"Golden light starts around here. Lakeside photos with a coat over the shoulder look great.",note:""},
+  {id:"s9",kind:"drive",time:"6:00 PM",title:"Drive home",blurb:"Sunset over the Rockies in the rear-view. Pick the group photo of the day.",tip:"Leave before dark if you can, wildlife is more active at dusk.",note:""}
+ ],
+ done:{},notes:{},
+ budget:[{t:"Park pass (per car, check current rate)",a:21},{t:"Gas",a:30},{t:"Cafe",a:30},{t:"Lunch",a:45},{t:"Treats on Banff Ave",a:20}],
+ ppl:3,
+ pack:[{t:"Phone chargers and power bank",d:0},{t:"Layers (it's colder at the lakes)",d:0},{t:"Comfy walking shoes",d:0},{t:"Sunglasses",d:0},{t:"Blanket for lakeside photos",d:0},{t:"Snacks and water",d:0}]
+};
+var S;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||!S.stops){S=JSON.parse(JSON.stringify(DEFAULT))}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+var $=function(s){return document.querySelector(s)};
+var labels={drive:"On the road",photo:"Photo stop",food:"Food stop"};
+function esc(t){var d=document.createElement("div");d.textContent=t==null?"":t;return d.innerHTML}
+
+function renderStops(){
+ var h="";
+ S.stops.forEach(function(s,i){
+  h+='<article class="stop'+(S.done[s.id]?' done':'')+'" data-id="'+s.id+'">'+
+  '<span class="tag '+s.kind+'">'+labels[s.kind]+'</span>'+
+  '<div class="time" contenteditable="true" data-f="time" aria-label="Time">'+esc(s.time)+'</div>'+
+  '<h2 contenteditable="true" data-f="title" aria-label="Stop name">'+esc(s.title)+'</h2>'+
+  '<div contenteditable="true" data-f="blurb" aria-label="Description">'+esc(s.blurb)+'</div>'+
+  '<div class="tip"><b>Photo tip:</b> <span contenteditable="true" data-f="tip">'+esc(s.tip)+'</span></div>'+
+  (s.kind==="photo"?'<label class="chk"><input type="checkbox" data-done'+(S.done[s.id]?' checked':'')+'> Got the photo</label>':'')+
+  '<textarea data-note="'+s.id+'" placeholder="Our notes, ideas, changes…" aria-label="Notes">'+esc(S.notes[s.id]||"")+'</textarea>'+
+  '<div class="row"><button class="ghost" data-up'+(i===0?' disabled':'')+'>Move up</button><button class="ghost" data-down'+(i===S.stops.length-1?' disabled':'')+'>Move down</button><button class="ghost" data-del>Remove</button></div>'+
+  '</article>';
+ });
+ $("#stops").innerHTML=h;
+ updateCount();
+}
+function updateCount(){
+ var photos=S.stops.filter(function(s){return s.kind==="photo"});
+ var n=photos.filter(function(s){return S.done[s.id]}).length;
+ $("#count").textContent=n+" of "+photos.length+" photos";
+ $("#fill").style.width=(photos.length?n/photos.length*100:0)+"%";
+}
+function find(el){var a=el.closest(".stop");if(!a)return null;var id=a.dataset.id;for(var i=0;i<S.stops.length;i++)if(S.stops[i].id===id)return i;return null}
+
+$("#stops").addEventListener("input",function(e){
+ var t=e.target,i=find(t);if(i===null)return;
+ if(t.dataset.f){S.stops[i][t.dataset.f]=t.textContent}
+ else if(t.dataset.note){S.notes[S.stops[i].id]=t.value}
+ save();
+});
+$("#stops").addEventListener("change",function(e){
+ if(e.target.hasAttribute("data-done")){var i=find(e.target);S.done[S.stops[i].id]=e.target.checked;save();e.target.closest(".stop").classList.toggle("done",e.target.checked);updateCount()}
+});
+$("#stops").addEventListener("click",function(e){
+ var t=e.target,i=find(t);if(i===null)return;
+ if(t.hasAttribute("data-del")){if(confirm("Remove this stop?")){S.stops.splice(i,1);save();renderStops()}}
+ else if(t.hasAttribute("data-up")&&i>0){var x=S.stops.splice(i,1)[0];S.stops.splice(i-1,0,x);save();renderStops()}
+ else if(t.hasAttribute("data-down")&&i<S.stops.length-1){var y=S.stops.splice(i,1)[0];S.stops.splice(i+1,0,y);save();renderStops()}
+});
+$("#add").onclick=function(){
+ S.stops.push({id:"c"+Date.now(),kind:"photo",time:"Time",title:"New stop",blurb:"What is this place and why do we want to go?",tip:"Best angle or spot",note:""});
+ save();renderStops();
+ var all=document.querySelectorAll(".stop");all[all.length-1].scrollIntoView({behavior:"smooth",block:"center"});
+};
+document.querySelector("main").addEventListener("input",function(e){
+ if(e.target.dataset&&e.target.dataset.note==="general"){S.notes.general=e.target.value;save()}
+});
+$("[data-note=general]").value=S.notes.general||"";
+
+/* budget */
+function renderBudget(){
+ $("#blist").innerHTML=S.budget.map(function(b,i){return '<div class="item" data-i="'+i+'"><span contenteditable="true" data-bt>'+esc(b.t)+'</span>$<input type="number" min="0" step="1" value="'+(+b.a||0)+'" data-ba aria-label="Amount"><button class="ghost" data-bd aria-label="Remove">x</button></div>'}).join("");
+ totals();
+}
+function totals(){
+ var t=S.budget.reduce(function(s,b){return s+(+b.a||0)},0);
+ $("#btotal").textContent=t.toFixed(0);
+ var p=Math.max(1,+$("#ppl").value||1);
+ $("#beach").textContent=(t/p).toFixed(2);
+}
+$("#ppl").value=S.ppl||3;
+$("#ppl").oninput=function(){S.ppl=+this.value||3;save();totals()};
+$("#blist").addEventListener("input",function(e){
+ var r=e.target.closest(".item"),i=+r.dataset.i;
+ if(e.target.hasAttribute("data-ba")){S.budget[i].a=+e.target.value||0;totals()}else{S.budget[i].t=e.target.textContent}
+ save();
+});
+$("#blist").addEventListener("click",function(e){if(e.target.hasAttribute("data-bd")){S.budget.splice(+e.target.closest(".item").dataset.i,1);save();renderBudget()}});
+$("#addb").onclick=function(){S.budget.push({t:"New expense",a:0});save();renderBudget()};
+
+/* pack */
+function renderPack(){
+ $("#plist").innerHTML=S.pack.map(function(p,i){return '<div class="item'+(p.d?' off':'')+'" data-i="'+i+'"><input type="checkbox" data-pd'+(p.d?' checked':'')+' aria-label="Packed"><span contenteditable="true" data-pt>'+esc(p.t)+'</span><button class="ghost" data-pr aria-label="Remove">x</button></div>'}).join("");
+}
+$("#plist").addEventListener("input",function(e){if(e.target.hasAttribute("data-pt")){S.pack[+e.target.closest(".item").dataset.i].t=e.target.textContent;save()}});
+$("#plist").addEventListener("change",function(e){if(e.target.hasAttribute("data-pd")){var r=e.target.closest(".item");S.pack[+r.dataset.i].d=e.target.checked?1:0;r.classList.toggle("off",e.target.checked);save()}});
+$("#plist").addEventListener("click",function(e){if(e.target.hasAttribute("data-pr")){S.pack.splice(+e.target.closest(".item").dataset.i,1);save();renderPack()}});
+$("#addp").onclick=function(){S.pack.push({t:"New item",d:0});save();renderPack()};
+
+/* theme + reset */
+$("#theme").onclick=function(){
+ var r=document.documentElement,dark=getComputedStyle(document.body).getPropertyValue("--bg").trim()==="#2a1627";
+ r.setAttribute("data-theme",dark?"light":"dark");
+ if(!dark){r.removeAttribute("data-theme");r.style.cssText="--bg:#2a1627;--paper:#3a2236;--ink:#ffeaf1;--soft:#d9b3c8;--rose:#ff7fa6;--lilac:#6d5aa8;--butter:#7a6a2e;--mint:#2f6b55;--line:#5b3855;--shadow:rgba(0,0,0,.4)"}
+ else{r.style.cssText="";r.setAttribute("data-theme","light")}
+};
+$("#reset").onclick=function(){if(confirm("Reset everything back to the original plan? Your notes will be erased.")){try{localStorage.removeItem(KEY)}catch(e){}location.reload()}};
+
+renderStops();renderBudget();renderPack();
+})();
+</script>
+</body>
+</html>
