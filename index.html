@@ -45,6 +45,8 @@ button.ghost{background:transparent;border-color:var(--line);font-weight:500;pad
 label.chk{display:flex;gap:8px;align-items:center;font-weight:700;margin:8px 0;cursor:pointer}
 input[type=checkbox]{width:22px;height:22px;accent-color:var(--rose)}
 textarea{width:100%;min-height:110px;resize:vertical;border:2px solid var(--line);border-radius:10px;padding:10px 12px;font:1.25rem/1.6 Caveat,cursive;color:var(--ink);background:repeating-linear-gradient(transparent,transparent 31px,var(--line) 32px);background-color:var(--paper)}
+a.map{display:inline-block;margin:6px 0 2px;padding:4px 14px;border:2px solid var(--ink);border-radius:99px;background:var(--mint);color:var(--ink);font-weight:700;font-size:.9rem;text-decoration:none}
+a.map:hover{background:var(--lilac)}
 .row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px}
 .sec{background:var(--paper);border-radius:14px;padding:20px 18px;margin:34px 0;border:2px solid var(--line);box-shadow:0 6px 0 var(--shadow)}
 .sec h2{font-size:1.6rem;margin-bottom:10px;color:var(--rose)}
@@ -63,7 +65,7 @@ textarea{width:100%;min-height:110px;resize:vertical;border:2px solid var(--line
 <header class="hero">
 <h1>Banff Girls Trip</h1>
 <p>Calgary to the mountains, pretty stops only. No hiking.</p>
-<div class="chips"><span class="chip">About 1.5 hr each way</span><span class="chip">3 girls, 1 playlist</span><span class="chip">2 food stops</span></div>
+<div class="chips"><span class="chip">About 1.5 hr each way</span><span class="chip">3 girls, 1 playlist</span><span class="chip">Cafe + lunch + snack run</span></div>
 </header>
 
 <div class="bar">
@@ -99,18 +101,21 @@ textarea{width:100%;min-height:110px;resize:vertical;border:2px solid var(--line
 
 <script>
 (function(){
-var KEY="banff-girls-trip-v1";
+var KEY="banff-girls-trip-v2";
 var DEFAULT={
  stops:[
-  {id:"s1",kind:"drive",time:"8:30 AM",title:"Leave Calgary",blurb:"Coffee in hand, playlist on. Take Highway 1 west and the mountains show up on their own.",tip:"Sit on the passenger side going out for the first peek of the Rockies. Pull over safely at a marked viewpoint, never on the shoulder.",note:""},
-  {id:"s2",kind:"photo",time:"9:45 AM",title:"Engine Bridge, Canmore",blurb:"A pretty pedestrian bridge over the Bow River with the Three Sisters peaks behind it.",tip:"Stand mid-bridge and shoot with the peaks over your shoulder. Walk-and-twirl videos work well here. About 30 minutes.",note:""},
-  {id:"s3",kind:"food",time:"10:45 AM",title:"Cafe: Wild Flour Bakery, Banff",blurb:"Cozy bakery cafe with pastries, sandwiches and good coffee. Budget friendly and very photogenic.",tip:"Go early, it fills up. Get one pastry each and swap bites for the flat-lay photo.",note:""},
-  {id:"s4",kind:"photo",time:"12:00 PM",title:"Vermilion Lakes",blurb:"A short scenic drive with calm water, reeds and Mount Rundle reflecting on a still day.",tip:"Stop at the second or third pull-off for the best reflection. Wind ruins it, so check the water first.",note:""},
-  {id:"s5",kind:"photo",time:"1:00 PM",title:"Surprise Corner and Bow Falls",blurb:"The postcard view of the Fairmont Banff Springs castle with the valley behind it, plus the falls below.",tip:"Surprise Corner is a short walk from the parking area. Take a wide shot from the viewpoint and a close-up at the falls.",note:""},
-  {id:"s6",kind:"food",time:"2:00 PM",title:"Lunch: Barpa Bill's Souvlaki, Banff",blurb:"Quick, filling and cheap by Banff standards. Souvlaki wraps and Greek plates on Banff Avenue.",tip:"Eat by the river or grab a bench on Banff Ave. Check hours before you go.",note:""},
-  {id:"s7",kind:"photo",time:"3:00 PM",title:"Banff Avenue stroll",blurb:"Cute shops, candy stores and Cascade Mountain filling the end of the street.",tip:"Stand in the middle of the crosswalk at the bottom of the street for the classic mountain-down-the-road shot. Watch for cars.",note:""},
-  {id:"s8",kind:"photo",time:"4:30 PM",title:"Lake Minnewanka and Two Jack Lake",blurb:"Big turquoise-blue lakes ringed by mountains, only minutes from town. Bring a blanket.",tip:"Golden light starts around here. Lakeside photos with a coat over the shoulder look great.",note:""},
-  {id:"s9",kind:"drive",time:"6:00 PM",title:"Drive home",blurb:"Sunset over the Rockies in the rear-view. Pick the group photo of the day.",tip:"Leave before dark if you can, wildlife is more active at dusk.",note:""}
+  {id:"s1",kind:"drive",time:"8:00 AM",title:"Leave Calgary",blurb:"Coffee in hand, playlist on. Take Highway 1 west and the mountains show up on their own.",tip:"Sit on the passenger side going out for the first peek of the Rockies. Pull over only at marked viewpoints.",map:"Calgary, AB",note:""},
+  {id:"s2",kind:"food",time:"9:00 AM",title:"Snack run: Three Sisters IGA, Canmore",blurb:"Grab fresh fruit and snacks for the day, way cheaper than Banff. Then drive slowly through the newly built Three Sisters community for mountain-view houses and street photos.",tip:"Get grapes, berries and mini cucumbers for the car. Shoot the mountain peaks over the rooftops from a quiet street, and park safely before getting out.",map:"Three Sisters IGA, Canmore, AB",note:""},
+  {id:"s3",kind:"photo",time:"9:45 AM",title:"Engine Bridge, Canmore",blurb:"A pretty pedestrian bridge over the Bow River with the Three Sisters peaks behind it.",tip:"Stand mid-bridge and shoot with the peaks over your shoulder. Walk-and-twirl videos work well here. About 30 minutes.",map:"Engine Bridge, Canmore, AB",note:""},
+  {id:"s4",kind:"food",time:"10:45 AM",title:"Cafe: Wild Flour Bakery, Banff",blurb:"Cozy bakery cafe with pastries, sandwiches and good coffee. Budget friendly and very photogenic.",tip:"Go early, it fills up. Get one pastry each and swap bites for the flat-lay photo.",map:"Wild Flour Bakery, Banff, AB",note:""},
+  {id:"s5",kind:"photo",time:"11:45 AM",title:"Vermilion Lakes",blurb:"A short scenic drive with calm water, reeds and Mount Rundle reflecting on a still day.",tip:"Stop at the second or third pull-off for the best reflection. Wind ruins it, so check the water first.",map:"Vermilion Lakes Scenic Drive, Banff, AB",note:""},
+  {id:"s6",kind:"photo",time:"12:30 PM",title:"Surprise Corner",blurb:"The postcard view of the Fairmont Banff Springs castle with the Bow River and valley behind it.",tip:"A short walk from the parking area. Take a wide shot from the viewpoint, then a vertical one with the castle in the corner.",map:"Surprise Corner Viewpoint, Banff, AB",note:""},
+  {id:"s7",kind:"photo",time:"1:00 PM",title:"Bow Falls viewpoint",blurb:"A wide, powerful waterfall on the Bow River, right below the Banff Springs hotel. Easy flat walk from the parking area.",tip:"Get the falls with the river curving behind you. Spray makes everything glowy, so keep your lens dry.",map:"Bow Falls Viewpoint, Banff, AB",note:""},
+  {id:"s8",kind:"food",time:"1:45 PM",title:"Lunch: Barpa Bill's Souvlaki, Banff",blurb:"Quick, filling and cheap by Banff standards. Souvlaki wraps and Greek plates on Banff Avenue.",tip:"Eat on a bench on Banff Ave or by the river. Check hours before you go.",map:"Barpa Bill's Souvlaki, Banff, AB",note:""},
+  {id:"s9",kind:"photo",time:"2:30 PM",title:"Banff Avenue stroll",blurb:"Cute shops, candy stores and Cascade Mountain filling the end of the street.",tip:"Free parking: use the Bear Street lot's higher levels so you skip paid street parking, and check the posted signs and time limits. For the classic shot, stand in the crosswalk at the bottom of the street with Cascade behind you, and watch for cars.",map:"Banff Avenue, Banff, AB",note:""},
+  {id:"s10",kind:"photo",time:"3:45 PM",title:"Mount Norquay Lookout",blurb:"A viewpoint on the winding road above town with sweeping views of Banff and the valley below. Short drive from the main street.",tip:"Pull into the lookout and shoot the town and mountains in one frame. It is windy and cold up top, so bring a jacket.",map:"Mount Norquay Scenic Viewpoint, Banff, AB",note:""},
+  {id:"s11",kind:"photo",time:"4:45 PM",title:"Lake Minnewanka and Two Jack Lake",blurb:"Big blue lakes ringed by mountains, only minutes from town. Bring a blanket.",tip:"Golden light starts around here. Lakeside photos with a coat over the shoulder look great. Check Parks Canada road status first, some loops close in winter.",map:"Lake Minnewanka, Banff, AB",note:""},
+  {id:"s12",kind:"drive",time:"5:45 PM",title:"Drive home",blurb:"Sunset over the Rockies in the rear-view. Pick the group photo of the day.",tip:"Late October gets dark early. Leave before dark if you can, wildlife is more active at dusk.",map:"Calgary, AB",note:""}
  ],
  done:{},notes:{},
  budget:[{t:"Park pass (per car, check current rate)",a:21},{t:"Gas",a:30},{t:"Cafe",a:30},{t:"Lunch",a:45},{t:"Treats on Banff Ave",a:20}],
@@ -125,6 +130,7 @@ var $=function(s){return document.querySelector(s)};
 var labels={drive:"On the road",photo:"Photo stop",food:"Food stop"};
 function esc(t){var d=document.createElement("div");d.textContent=t==null?"":t;return d.innerHTML}
 
+function mapUrl(s){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(s.map||s.title)}
 function renderStops(){
  var h="";
  S.stops.forEach(function(s,i){
@@ -134,6 +140,7 @@ function renderStops(){
   '<h2 contenteditable="true" data-f="title" aria-label="Stop name">'+esc(s.title)+'</h2>'+
   '<div contenteditable="true" data-f="blurb" aria-label="Description">'+esc(s.blurb)+'</div>'+
   '<div class="tip"><b>Photo tip:</b> <span contenteditable="true" data-f="tip">'+esc(s.tip)+'</span></div>'+
+  '<a class="map" target="_blank" rel="noopener" href="'+mapUrl(s)+'">Open in Google Maps</a>'+
   (s.kind==="photo"?'<label class="chk"><input type="checkbox" data-done'+(S.done[s.id]?' checked':'')+'> Got the photo</label>':'')+
   '<textarea data-note="'+s.id+'" placeholder="Our notes, ideas, changes…" aria-label="Notes">'+esc(S.notes[s.id]||"")+'</textarea>'+
   '<div class="row"><button class="ghost" data-up'+(i===0?' disabled':'')+'>Move up</button><button class="ghost" data-down'+(i===S.stops.length-1?' disabled':'')+'>Move down</button><button class="ghost" data-del>Remove</button></div>'+
@@ -152,7 +159,7 @@ function find(el){var a=el.closest(".stop");if(!a)return null;var id=a.dataset.i
 
 $("#stops").addEventListener("input",function(e){
  var t=e.target,i=find(t);if(i===null)return;
- if(t.dataset.f){S.stops[i][t.dataset.f]=t.textContent}
+ if(t.dataset.f){S.stops[i][t.dataset.f]=t.textContent;if(t.dataset.f==="title"&&!S.stops[i].map){t.closest(".stop").querySelector("a.map").href=mapUrl(S.stops[i])}}
  else if(t.dataset.note){S.notes[S.stops[i].id]=t.value}
  save();
 });
